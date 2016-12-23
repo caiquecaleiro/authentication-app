@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
+import { signInUser } from '../../actions/index';
 
 import Input from '../Input';
 
 class SignIn extends Component {
   onSubmit(props) {
-    console.log(props);
+    this.props.signInUser(props);
   }
 
   render() {
@@ -34,9 +36,10 @@ class SignIn extends Component {
 }
 
 SignIn.propTypes = {
-  handleSubmit: PropTypes.func.isRequired 
+  handleSubmit: PropTypes.func.isRequired,
+  signInUser: PropTypes.func.isRequired
 }
 
-export default reduxForm({
+export default connect(null, { signInUser })(reduxForm({
   form: 'signIn'
-})(SignIn);
+})(SignIn));

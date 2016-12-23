@@ -1,0 +1,21 @@
+import axios from 'axios';
+import { browserHistory } from 'react-router';
+
+import { AUTH_USER } from './types';
+
+// Server API URL
+const API_URL = 'http://localhost:3090';
+
+export function signInUser({ email, password }) {
+  return function(dispatch) {
+    axios.post(`${API_URL}/signin`, { email, password })
+      .then(response => {
+        dispatch({ type: AUTH_USER });
+        localStorage.setItem('token', response.data.token);
+        browserHistory.push('/feature');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+}
