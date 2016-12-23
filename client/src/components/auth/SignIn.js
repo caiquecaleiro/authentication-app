@@ -10,6 +10,16 @@ class SignIn extends Component {
     this.props.signInUser(props);
   }
 
+  renderAlert() {
+    if (this.props.errorMessage) {
+      return (
+        <div className="alert alert-danger">
+          <strong>Oops!</strong> {this.props.errorMessage}
+        </div>
+      );
+    }
+  }
+
   render() {
     const { handleSubmit } = this.props;
 
@@ -29,6 +39,7 @@ class SignIn extends Component {
             component={Input}
           />
         </fieldset>
+        {this.renderAlert()}
         <button type="submit" className="btn btn-primary">Sign in</button>
       </form>
     );
@@ -37,9 +48,14 @@ class SignIn extends Component {
 
 SignIn.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  signInUser: PropTypes.func.isRequired
+  signInUser: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string
 }
 
-export default connect(null, { signInUser })(reduxForm({
+function mapStateToProps(state) {
+  return { errorMessage: state.auth.error }
+}
+
+export default connect(mapStateToProps, { signInUser })(reduxForm({
   form: 'signIn'
 })(SignIn));

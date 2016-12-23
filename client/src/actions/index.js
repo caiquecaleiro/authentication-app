@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-import { AUTH_USER } from './types';
+import { AUTH_USER, AUTH_ERROR } from './types';
 
 // Server API URL
 const API_URL = 'http://localhost:3090';
@@ -14,8 +14,15 @@ export function signInUser({ email, password }) {
         localStorage.setItem('token', response.data.token);
         browserHistory.push('/feature');
       })
-      .catch(error => {
-        console.log(error);
+      .catch(() => {
+        dispatch(authError('Wrong email or password'));
       });
+  }
+}
+
+export function authError(error) {
+  return {
+    type: AUTH_ERROR,
+    payload: error
   }
 }
