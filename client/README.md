@@ -1,13 +1,11 @@
-# Server
+# Client
 
-### Remember to run the MongoDB, so the server can create the User.
+### Remember to run the server side as well or change the API_URL:
 
-## Create a config.js to hold the secret key
+src/actions/index.js
 ```javascript
-// Hold application secrets and config
-module.exports = {
-  secret: 'mysecretkey123'
-}
+// Server API URL
+const API_URL = 'http://localhost:3090';
 ```
 
 ## Installation and usage
@@ -19,7 +17,7 @@ $ npm install
 
 Start the application:
 ```bash
-$ npm run dev
+$ npm start
 ```
 
 ## Contributors  
