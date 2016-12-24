@@ -1,6 +1,6 @@
 # Server
 
-### Remember to run the MongoDB, so the server can create the User.
+**Remember to run the MongoDB, so the server can create the User.**
 
 ## Create a config.js to hold the secret key
 ```javascript

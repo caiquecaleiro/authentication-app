@@ -1,6 +1,6 @@
 # Client
 
-### Remember to run the server side as well or change the API_URL:
+**Remember to run the server side as well or change the API_URL:**
 
 src/actions/index.js
 ```javascript
